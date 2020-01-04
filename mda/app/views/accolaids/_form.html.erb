@@ -1,0 +1,51 @@
+<%= form_with(model: accolaid, local: true) do |form| %>
+  <% if accolaid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(accolaid.errors.count, "error") %> prohibited this accolaid from being saved:</h2>
+
+      <ul>
+        <% accolaid.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <%= form.label :season_id %>
+  <div class="select-style"> 
+    <%= form.select :season_id, Season.all.collect {|x| [x.name, x.id]}, {prompt: 'Select Season'} %>
+  </div>
+  </div>
+
+  <div class="field">
+  <%= form.label :week %>
+  <div class="select-style"> 
+    <%= form.select :week, 1..16, {prompt: 'Select Week'} %>
+  </div>
+  </div>
+
+  <div class="field">
+  <%= form.label :player_id %>
+  <div class="select-style"> 
+    <%= form.select :player_id, Player.all.collect {|x| [x.name, x.id]}, {prompt: "Select Player"} %>
+  </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number, :step => 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accolaid, "Accolaid" %>
+    <div class="select-style"> 
+      <%= form.select :accolaid, Accolaid.accolaids.keys.to_a, {prompt: "Select Accolaid"} %>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

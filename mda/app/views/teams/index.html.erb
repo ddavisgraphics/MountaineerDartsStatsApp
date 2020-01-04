@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Teams</h1>
+
+  <div class="season"> 
+    
+  </div>
+
+    <% @teams.each do |team| %>
+    <div class="team">      
+      <h2> <%= team.name %> </h2>
+      <strong> Location: </strong><%= team.location %> <br/>
+      <strong> Players: </strong> <br/>
+      <ul> 
+        <% team.players.each do |player| %>
+          <li> 
+            <%= player.name %>  
+            <%= player.phone unless player.phone.nil? %>
+            <%= "(Captain)" if player.captain? %>
+          </li>
+        <% end %>
+      </ul>
+      <%= link_to 'Show', team %>
+      <%= link_to 'Edit', edit_team_path(team) %>
+      <%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+      
+    <% end %>
+
+<br>
+
+<%= link_to 'New Team', new_team_path %>

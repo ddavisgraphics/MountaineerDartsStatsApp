@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @season_standing.team_id %>
+</p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @season_standing.season_id %>
+</p>
+
+<p>
+  <strong>Wins:</strong>
+  <%= @season_standing.wins %>
+</p>
+
+<p>
+  <strong>Losses:</strong>
+  <%= @season_standing.losses %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @season_standing.points %>
+</p>
+
+<%= link_to 'Edit', edit_season_standing_path(@season_standing) %> |
+<%= link_to 'Back', season_standings_path %>

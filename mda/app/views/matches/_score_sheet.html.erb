@@ -1,0 +1,51 @@
+
+  <div class="heading"> 501 </div>
+
+  <div class="singles row mb-3">
+    <%= render partial: 'singles_501', locals: {form: results_fields, team: team, player_number: :player_1, game: '501'} %>
+  </div>
+  <div class="singles row mb-3">
+    <%= render partial: 'singles_501', locals: {form: results_fields, team: team, player_number: :player_2, game: '501'} %>
+  </div>
+  <div class="singles row mb-3">
+    <%= render partial: 'singles_501', locals: {form: results_fields, team: team, player_number: :player_3, game: '501'} %>
+  </div>
+  <div class="singles row mb-3">
+    <%= render partial: 'singles_501', locals: {form: results_fields, team: team, player_number: :player_4, game: '501'} %>
+  </div>
+
+  <div class="heading mb-3"> Cricket </div>
+
+  <div class="team-games row mb-3">
+    <%= render partial: 'team_matches', locals: {form: results_fields, team: team, game: 'cricket', number: 1} %>
+  </div>
+
+  <div class="team-games row mb-3">
+    <%= render partial: 'team_matches', locals: {form: results_fields, team: team, game: 'cricket', number: 2} %>
+  </div>
+
+  <div class="heading mb-3"> Choice </div>
+
+  <div class="team-games row mb-3">
+    <%= render partial: 'team_matches', locals: {form: results_fields, team: team, game: 'choice', number: 1} %>
+  </div>
+
+  <div class="team-games row mb-3">
+    <%= render partial: 'team_matches', locals: {form: results_fields, team: team, game: 'choice', number: 2} %>
+  </div>
+
+  <div class="team-games"> 
+    <div class="field">
+      <div class="heading"> 801 </div>
+      <%= fields_for "match[results][#{team}][801]" do |tie_breaker| %>
+        <div class="select-style"> 
+          <%= tie_breaker.select :result, ['Win', 'Loss'], {prompt: 'Result'} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="points">
+    <%= results_fields.label "#{team}_team_points" %>
+    <%= results_fields.text_field "#{team}_team_points" %>
+  </div>

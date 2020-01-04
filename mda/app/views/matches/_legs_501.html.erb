@@ -1,0 +1,17 @@
+<%= fields_for "#{form}[#{leg}]" do |player| %>
+<div class="leg-<%=leg%> col"> 
+  <div class="field">
+    <%= player.label :darts %>
+    <%= player.text_field :darts %>
+  </div>
+  <div class="field">
+    <%= player.label :points %>
+    <%= player.text_field :points %>
+  </div>
+  <div class="field">
+    <div class="select-style"> 
+      <%= player.select :result, ['Win', 'Loss'], {prompt: 'Result'} %>
+    </div>
+  </div>
+</div>
+<% end %>

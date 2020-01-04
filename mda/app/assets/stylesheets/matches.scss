@@ -1,0 +1,37 @@
+// Place all the styles related to the Matches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.win { 
+  background:lighten(green, 60%);
+  border:2px solid green; 
+  color:#000; 
+  font-weight:bold;
+  padding:1em;
+}
+
+.loss { 
+  background:lighten(red, 30%);
+  border:2px solid red; 
+  color:#000; 
+  font-weight:bold;
+  padding:1em;
+}
+
+.player-result, .team-match { 
+  font-size:12px; 
+}
+
+.totals { 
+  background: #eee; 
+  border:2px solid #ccc;
+  color: #333; 
+  padding:1em; 
+}
+
+.stats-table { 
+  tr, td, th { 
+    font-size:11px !important;
+    padding:2px; 
+  }
+}

@@ -1,0 +1,42 @@
+<%= form_with(model: season_standing, local: true) do |form| %>
+  <% if season_standing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(season_standing.errors.count, "error") %> prohibited this season_standing from being saved:</h2>
+
+      <ul>
+        <% season_standing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :team_id %>
+    <%= form.text_field :team_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :season_id %>
+    <%= form.text_field :season_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wins %>
+    <%= form.number_field :wins %>
+  </div>
+
+  <div class="field">
+    <%= form.label :losses %>
+    <%= form.number_field :losses %>
+  </div>
+
+  <div class="field">
+    <%= form.label :points %>
+    <%= form.number_field :points %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

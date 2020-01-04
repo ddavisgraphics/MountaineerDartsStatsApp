@@ -1,0 +1,11 @@
+<h1>Editing Match</h1>
+
+<%= render 'form', match: @match, button_title: 'Edit Match' %>
+
+<%= link_to 'Show', @match %> |
+<%= link_to 'Back', matches_path %>
+
+<script> 
+ var result_data = <%= raw @match.results.to_json %>;
+ console.log(result_data);
+</script>

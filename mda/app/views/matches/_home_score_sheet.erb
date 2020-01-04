@@ -1,0 +1,18 @@
+
+  <div class="heading"> 501 </div>
+
+  <div class="singles row mb-3">
+    <%= form.fields_for :singles, multiple: true do |singles| %>
+        <%= singles.text_field :player_id %>
+        <%= singles.fields_for :legs do |leg| %>
+          <%= leg.text_field :darts %>
+          <%= leg.text_field :points %>
+          <%= leg.text_field :result %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="points">
+    <%# <%= results_fields.label "#{team}_team_points" %>
+    <%# <%= results_fields.text_field "#{team}_team_points" %>
+  </div>

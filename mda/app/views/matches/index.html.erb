@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Matches</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Home team</th>
+      <th>Away team</th>
+      <th>Week</th>
+      <th>Season</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td> <%= Team.find(match.home_team_id).name %> </td>
+        <td> <%= Team.find(match.away_team_id).name %> </td>
+        <td> <%= match.week %> </td>
+        <td> <%= match.season.name %> </td>
+        <td><%= link_to 'Show', match %></td>
+        <td><%= link_to 'Edit', edit_match_path(match) %></td>
+        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Match', new_match_path %>

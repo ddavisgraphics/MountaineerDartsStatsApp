@@ -1,0 +1,22 @@
+<%= fields_for "[match][results][#{team}][#{game}][#{number}]" do |player| %>
+  <div class="player col-6">
+    <%= player.label :player_1 %>
+    <div class="select-style"> 
+      <%= player.select :player_1, Player.all.collect {|x| [x.name, x.id]}, {prompt: "Select Player"} %>
+    </div>
+  </div>
+
+  <div class="player col-6">
+    <%= player.label :player_2 %>
+    <div class="select-style"> 
+      <%= player.select :player_2, Player.all.collect {|x| [x.name, x.id]}, {prompt: "Select Player"} %>
+    </div>
+  </div>
+
+  <div class="legs row col-12 no-gutters">
+    <div class="heading col-12"> Wins / Losses </div>
+    <%= render partial: 'team_legs', locals: {form: "match[results][#{team}][#{game}][#{number}][legs]", leg: 1} %>
+    <%= render partial: 'team_legs', locals: {form: "match[results][#{team}][#{game}][#{number}][legs]", leg: 2} %>
+    <%= render partial: 'team_legs', locals: {form: "match[results][#{team}][#{game}][#{number}][legs]", leg: 3} %>
+  </div>
+<%  end %>

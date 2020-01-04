@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Accolaids</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Season</th>
+      <th>Players</th>
+      <th>Type</th>
+      <th>Number</th>
+      <th>Week</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accolaids.each do |accolaid| %>
+      <tr>
+        <td><%= accolaid.season.name %></td>
+        <td><%= accolaid.player.name %></td>
+        <td><%= accolaid.accolaid %></td>
+        <td><%= accolaid.number %></td>
+        <td><%= accolaid.week %></td>
+        <td><%= link_to 'Show', accolaid %></td>
+        <td><%= link_to 'Edit', edit_accolaid_path(accolaid) %></td>
+        <td><%= link_to 'Destroy', accolaid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Accolaid', new_accolaid_path %>

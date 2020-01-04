@@ -1,0 +1,70 @@
+<%= "No Stats at this Time" unless @memberships.present? %>
+
+<table class="table table-striped table-bordered stats-table" style="font-size:10px !important;"> 
+  <thead> 
+    <tr> 
+      <th> Season </th>
+      <th> Player </th>
+      <th> Team </th>
+      <!-- 501 -->
+      <% [:match_501_wins, :match_501_losses, :match_501_percent, :legs_501_won, :legs_501_lost, :legs_501_percent, :darts, :points, :ppd, :avg, :net_avg].each do |k| %>
+       <th> <%="#{k}".titlecase %>  </th>
+      <% end %>
+
+      <!-- Cricket -->
+      <% [:cricket_legs_won, :cricket_legs_lost, :cricket_win_percent].each do |k| %>
+        <th> <%="#{k}".titlecase %>  </th>
+      <% end %>
+
+      <!-- 301 --> 
+      <% [:choice_legs_won, :choice_legs_lost, :choice_win_percent].each do |k| %>
+        <th> <%="#{k}".titlecase %>  </th>
+      <% end %>
+
+      <th> MVP </th>
+
+      <% [:RON, :T80, :T71, :weekly_bonus].each do |k| %>
+        <th> <%="#{k}".titlecase %>  </th>
+      <% end %>
+
+      <th> Bonus </th>
+
+      <!-- Accolaids -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @memberships.each do |member| %> 
+      <% singles = SeasonPlayerStatsDecorator.cumulative_singles_stats(member.player.season_singles_stats(member.season.id)) %>
+      <% cricket = SeasonPlayerStatsDecorator.cumulative_team_stats(member.player.season_cricket_stats(member.season.id)) %>
+      <% choice = SeasonPlayerStatsDecorator.cumulative_team_stats(member.player.season_choice_stats(member.season.id)) %>
+      <% mvp = SeasonPlayerStatsDecorator.mvp_points(singles[:legs_won], cricket[:legs_won], choice[:legs_won]) %>
+      <% accolaids = SeasonPlayerStatsDecorator.accolaids(member.player.season_accolaids(member.season.id)) %>
+      <tr>
+        <td> <%= member.season_name %> </td>
+        <td> <%= member.player_name %> </td>
+        <td> <%= member.team_name %> </td>
+
+        <% singles.values.each do |v| %> 
+          <td> <%= v %></td>
+        <% end %>
+
+
+        <% cricket.values.each do |v| %> 
+          <td> <%= v %></td>
+        <% end %>
+
+        <% choice.values.each do |v| %> 
+          <td> <%= v %></td>
+        <% end %>
+
+        <td> <%= mvp %> </td>
+
+        <% accolaids.values.each do |v| %>
+          <td> <%= v %> </td>
+        <% end %>
+
+        <td> <%= SeasonPlayerStatsDecorator.calc_bonus(accolaids) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

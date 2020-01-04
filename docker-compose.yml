@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:9.5
+    restart: always
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    ports: 
+      - 5432:5432
+  rails: 
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: mda
+    restart: always
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - SECRET_KEY_BASE=testing7038194cc02c
+      - DB_PASS=mysecretpassword
+    volumes:
+      - ./mda:/home/mda
+    ports:
+      - "5000:3000" 
+    links:
+      - db

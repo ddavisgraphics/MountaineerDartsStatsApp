@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @accolaid.season.name %>
+</p>
+
+<p>
+  <strong>Players:</strong>
+  <%= @accolaid.player.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @accolaid.accolaid %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @accolaid.number.to_f %>
+</p>
+
+<p>
+  <strong>Week:</strong>
+  <%= @accolaid.week %>
+</p>
+
+<%= link_to 'Edit', edit_accolaid_path(@accolaid) %> |
+<%= link_to 'Back', accolaids_path %>

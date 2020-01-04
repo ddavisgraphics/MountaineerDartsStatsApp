@@ -1,0 +1,49 @@
+<template class='accolaid-form'>
+  <%= fields_for "[results][accolaids][CHANGEME]" do |player| %>
+    <div class="row"> 
+      <div class="col">
+        <%= player.label :player %>
+        <div class="select-style"> 
+          <%= player.select :player, Player.all.collect {|x| [x.name, x.id]}, {prompt: "Select Player"} %>
+        </div>
+      </div>
+
+      <div class="col">
+        <%= player.label :type, "Accolaid" %>
+        <div class="select-style"> 
+          <%= player.select :type, Accolaid.types.keys.to_a, {prompt: "Select Accolaid"} %>
+        </div>
+      </div>
+
+      <div class="field col">
+        <%= player.label :number %>
+        <%= player.text_field :number %>
+      </div>
+
+      <div class="col-1"> 
+        <button type="button" class="btn btn-danger remove-accolaid"> X </button>
+      </div>
+    </div>
+  <% end %>
+</template>
+
+
+<div class="accolaids col-12"> </div>
+<button type="button" class="btn btn-info add-accolaid float-right"> Add Accolaid </button>
+
+
+<script>
+  $('.add-accolaid').click(function(e){
+    e.preventDeafult; 
+    var tmp = $('.accolaid-form').html(); 
+    var regexp = new RegExp('CHANGEME', 'gm');
+    var new_id = new Date().getTime();
+    tmp = tmp.replace(regexp, new_id);
+    $('.accolaids').append(tmp);
+  });
+
+  $(document).on('click','.remove-accolaid', function(e){
+    e.preventDefault; 
+    e.target.parentNode.parentNode.remove();
+  }); 
+</script> 

@@ -1,0 +1,72 @@
+<%= form_with(model: match, local: true) do |form| %>
+  <% if match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+        <% match.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row mb-5">
+    <div class="field col">
+      <%= form.label :season_id %>
+      <div class="select-style"> 
+        <%= form.select :season_id, Season.all.collect {|x| [x.name, x.id]}, {prompt: 'Select Season'} %>
+      </div>
+    </div>
+
+    <div class="field col">
+      <%= form.label :week %>
+      <div class="select-style"> 
+        <%= form.select :week, 1..16, {prompt: 'Select Week'} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="field col">
+      <%= form.label :home_team_id %>
+      <div class="select-style"> 
+        <%= form.select :home_team_id, Team.all.collect {|x| [x.name, x.id]}, {prompt: 'Select Team'} %>
+      </div>
+    </div>
+
+    <div class="field col">
+      <%= form.label :away_team_id %>
+      <div class="select-style"> 
+        <%= form.select :away_team_id, Team.all.collect {|x| [x.name, x.id]}, {prompt: 'Select Team'} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field col-12">
+      <% if match.new_record? %>
+        <%= form.fields_for :results do |results_fields| %>
+        <div class="heading mb-3 border-bottom"> Match Results </div>
+        <div class="row mb-3"> 
+          <div class="col-6"> 
+            <%= render partial: 'score_sheet', locals: {results_fields: results_fields, team: 'home'} %>
+          </div>
+          <div class="col-6"> 
+            <%= render partial: 'score_sheet', locals: {results_fields: results_fields, team: 'away'} %>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <%= form.text_area :results %>
+      <% end %>
+    </div>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit button_title, class: "btn button btn-primary" %>
+  </div>
+<% end %>
+ 
