@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all.includes(:players, :memberships, :seasons)
+    @teams = Team.all.includes(:players, :memberships, :seasons).order(:name)
   end
 
   # GET /teams/1

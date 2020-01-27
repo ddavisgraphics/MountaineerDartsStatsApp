@@ -35,3 +35,14 @@
     padding:2px; 
   }
 }
+
+@media print {
+  .printable {
+    margin-top: 72px; 
+    margin-bottom: 72px; 
+    // width: 670px; /* width: 7in; */
+    // height: 900px; /* or height: 9.5in; */
+    clear: both;
+    page-break-after: always;
+  }
+}

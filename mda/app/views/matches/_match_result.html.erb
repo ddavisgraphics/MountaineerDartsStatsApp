@@ -1,0 +1,100 @@
+<% results = match.results %>
+
+<div class="col-12 row"> 
+  <h2 class="col-6"> Match Results </h2>
+  <h2 class="col-6 text-right"> <%= match.season.name %> Week <%= match.week %> </h2>
+
+  
+  <div class="col-6 text-left">
+   
+    <h3> Home: <%= StatsDecorator.team_name(match.home_team_id) %> </h3>
+
+    <div class="501">
+      <h3 class="text-center"> 501 </h3> 
+      <%= raw StatsDecorator.singles(results[:home][:"501"])%>
+      <br/>
+    </div>
+
+    <div class="cricket">
+      <h3 class="text-center"> Cricket </h3> 
+      <%= raw StatsDecorator.team(results[:home][:cricket]) %>
+      <br/>
+    </div>
+
+    <div class="choice">
+      <h3 class="text-center"> Choice </h3> 
+      <%= raw StatsDecorator.team(results[:home][:choice]) %>
+      <br/>
+    </div>
+
+    <% unless results[:home][:"801"][:result].blank? %>
+      <div class="801">
+        <h3 class="text-center"> 801 </h3>
+        <div class="row">
+          <div class="col <%= results[:home][:"801"][:result].downcase %>"> 
+            <%= results[:home][:"801"][:result].upcase %>
+          </div>
+
+          <div class="col totals"> 
+            Team Pts: <%= results[:home][:"801"][:result] == "Win" ? 1 : 0  %>
+          </div>
+         </div>
+      </div>
+      <br/>
+    <% end %>
+
+    
+    <h3 class="text-center"> Match Points </h3> 
+    <div class="row"> 
+      <div class="totals col-12">
+        <%= results[:home_team_points] %>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 text-right">
+   
+    <h3> Away: <%= StatsDecorator.team_name(match.away_team_id) %> </h3>
+
+    <div class="501">
+      <h3 class="text-center"> 501 </h3> 
+      <%= raw StatsDecorator.singles(results[:away][:"501"])%>
+      <br/>
+    </div>
+
+    <div class="cricket">
+      <h3 class="text-center"> Cricket </h3> 
+      <%= raw StatsDecorator.team(results[:away][:cricket]) %>
+      <br/>
+    </div>
+
+    <div class="choice">
+      <h3 class="text-center"> Choice </h3> 
+      <%= raw StatsDecorator.team(results[:away][:choice]) %>
+      <br/>
+    </div>
+
+    <% unless results[:away][:"801"][:result].blank? %>
+      <div class="801">
+        <h3 class="text-center"> 801 </h3>
+        <div class="row">
+          <div class="col <%= results[:away][:"801"][:result].downcase %>"> 
+            <%= results[:away][:"801"][:result].upcase %>
+          </div>
+
+          <div class="col totals"> 
+            Team Pts: <%= results[:away][:"801"][:result] == "Win" ? 1 : 0  %>
+          </div>
+         </div>
+      </div>
+      <br/>
+    <% end %>
+    
+
+    <h3 class="text-center"> Match Points </h3> 
+    <div class="row"> 
+      <div class="totals col-12">
+        <%= results[:away_team_points] %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<% @matches.each do |match| %>
+  <div class="mb-5 mt-5 printable"> 
+    <%= render partial: 'matches/match_result', locals: { :match => match } %>
+  </div>
+<% end %>
+
+
+<h2>Weekly Accolaids</h2>
+
+<table class="table">
+  <tbody>
+    <% @accolaids.each do |accolaid| %>
+      <tr>
+        <td><%= accolaid.player.name %></td>
+        <td><%= accolaid.accolaid.titlecase %></td>
+        <td><%= accolaid.number %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2> Season Bests Accolaids </h2>
+
+<table class="table">
+  <tbody>
+      <tr>
+        <td> Tommy Shillingburg</td>
+        <td> High In</td>
+        <td> 108 </td>
+      </tr>
+      <tr>
+        <td> Dave Davis </td>
+        <td> High Out </td>
+        <td> 99 </td>
+      </tr>
+      <tr>
+        <td> CJ Ruscin </td>
+        <td> Best 501 </td>
+        <td> 19 Dart </td>
+      </tr>
+  </tbody>
+</table>

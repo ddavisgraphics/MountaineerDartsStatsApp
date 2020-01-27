@@ -15,9 +15,9 @@
   <tbody>
     <% @memberships.each do |membership| %>
       <tr>
-        <td><%= membership.team.name %></td>
-        <td><%= membership.player.name %></td>
-        <td><%= membership.captain %></td>
+        <td><%= membership.team.name unless membership.team.nil? %></td>
+        <td><%= membership.player.name unless membership.player.nil? %></td>
+        <td><%= membership.captain unless membership.captain.nil? %></td>
         <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
         <td><%= link_to 'Destroy', membership, method: :delete %></td>
       </tr>

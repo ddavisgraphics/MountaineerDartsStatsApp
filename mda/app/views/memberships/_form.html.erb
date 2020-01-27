@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :player_id %>
-     <%= form.select :player_id, Player.all.collect {|x| [x.name, x.id]}, {prompt: 'Select Player'} %>
+     <%= form.select :player_id, Player.all.order('name').collect {|x| [x.name, x.id]}, {prompt: 'Select Player'} %>
   </div>
 
   <div class="field">

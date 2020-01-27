@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   belongs_to :division
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :players, through: :memberships
   accepts_nested_attributes_for :memberships
   has_many :seasons, through: :memberships

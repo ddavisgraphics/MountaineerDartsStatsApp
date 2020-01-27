@@ -4,7 +4,20 @@ class SeasonStandingsController < ApplicationController
   # GET /season_standings
   # GET /season_standings.json
   def index
-    @season_standings = SeasonStanding.all
+    queryStandings = SeasonStanding.all
+    standings = []
+    queryStandings.each do |standing|
+      tmp_hash = {}
+      tmp_hash[:id] = standing.id
+      tmp_hash[:team] = standing.team.name
+      tmp_hash[:season] = standing.season.name
+      tmp_hash[:division] = standing.division
+      tmp_hash[:wins] = standing.wins
+      tmp_hash[:losses] = standing.losses
+      tmp_hash[:points] = standing.points
+      standings << tmp_hash
+    end 
+    @season_standings = standings.sort_by { |k| k[:division] }
   end
 
   def generate

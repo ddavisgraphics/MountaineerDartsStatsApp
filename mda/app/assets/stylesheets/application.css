@@ -502,3 +502,38 @@
  
  .select2-container--classic.select2-container--open .select2-dropdown {
    border-color: #5897fb; }
+
+  @media print {
+    a[href]:after {
+      content: none !important;
+    }
+    a { 
+      color:#333 !important;
+    }    
+  }
+
+  .vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  th { 
+    background:#333;
+    color:#fff;
+  }
+
+
+@media print {
+  tr:first-child th {
+    background-color: #333 !important;
+    color:#fff !important; 
+    color-adjust: exact; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    height:120px;
+    text-align: center;
+    margin:0 auto;
+  }
+  tr:nth-child(even) td {
+    background-color: #ccc !important;
+    color-adjust: exact; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+}

@@ -28,6 +28,12 @@ class MatchesController < ApplicationController
   def edit
   end
 
+  # GET /matches/weekly/:week/:season_id/
+  def weekly
+    @matches = Match.where('week = ? AND season_id = ?', params[:week], params[:season_id])
+    @accolaids = Accolaid.where('week = ? AND season_id = ?', params[:week], params[:season_id])
+  end
+
   # POST /matches
   # POST /matches.json
   def create
@@ -50,9 +56,9 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if params[:match][:results].is_a? String
-        params[:match][:results] = JSON.parse(params[:match][:results].gsub!('=>', ':'))     
+        params[:match][:results] = JSON.parse(params[:match][:results].gsub!('=>', ':'))
       end
-     
+
       if @match.update(match_params)
         update_stats(@match, :home)
         update_stats(@match, :away)

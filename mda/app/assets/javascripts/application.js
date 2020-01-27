@@ -6440,7 +6440,8 @@ S2.define('jquery.select2',[
 }));
 
 
-$(document).ready(function() {
+$( document ).on('turbolinks:load', function() {
   $('select').select2();
 });
+
 

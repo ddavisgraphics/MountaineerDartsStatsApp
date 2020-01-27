@@ -4,13 +4,13 @@ services:
   db:
     image: postgres:9.5
     restart: always
-    container_name: db
+    container_name: darts_db
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     ports: 
-      - 5432:5432
+      - 6000:5432
   rails: 
     build: 
       context: ./

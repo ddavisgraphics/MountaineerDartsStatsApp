@@ -21,7 +21,7 @@
 
 <p> 
   <strong> Captain </strong>
-  <%= @team.captain.name %>
+  <%= @team.captain.name unless @team.captain.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |

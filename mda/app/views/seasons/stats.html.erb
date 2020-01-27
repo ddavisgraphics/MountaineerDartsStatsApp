@@ -1,33 +1,32 @@
 <%= "No Stats at this Time" unless @memberships.present? %>
 
-<table class="table table-striped table-bordered stats-table" style="font-size:10px !important;"> 
+<table class="table table-striped table-bordered stats-table tablesorter" style="font-size:10px !important;"> 
   <thead> 
     <tr> 
-      <th> Season </th>
-      <th> Player </th>
-      <th> Team </th>
+      <th><div class="vertical"> Player </div></th>
+      <th><div class="vertical"> Team </div></th>
       <!-- 501 -->
-      <% [:match_501_wins, :match_501_losses, :match_501_percent, :legs_501_won, :legs_501_lost, :legs_501_percent, :darts, :points, :ppd, :avg, :net_avg].each do |k| %>
-       <th> <%="#{k}".titlecase %>  </th>
+      <% [:match_501_wins,:legs_501_won, :legs_501_lost, :darts, :points, :ppd, :avg, :net_avg].each do |k| %>
+       <th><div class="vertical"> <%="#{k}".titlecase %>  </div></th>
       <% end %>
 
       <!-- Cricket -->
-      <% [:cricket_legs_won, :cricket_legs_lost, :cricket_win_percent].each do |k| %>
-        <th> <%="#{k}".titlecase %>  </th>
+      <% [:cricket_legs_won, :cricket_legs_lost].each do |k| %>
+        <th><div class="vertical"> <%="#{k}".titlecase %>  </div></th>
       <% end %>
 
       <!-- 301 --> 
-      <% [:choice_legs_won, :choice_legs_lost, :choice_win_percent].each do |k| %>
-        <th> <%="#{k}".titlecase %>  </th>
+      <% [:choice_legs_won, :choice_legs_lost].each do |k| %>
+        <th><div class="vertical"> <%="#{k}".titlecase %>  </div></th>
       <% end %>
 
-      <th> MVP </th>
+      <th><div class="vertical"> MVP </div></th>
 
       <% [:RON, :T80, :T71, :weekly_bonus].each do |k| %>
-        <th> <%="#{k}".titlecase %>  </th>
+        <th><div class="vertical"> <%="#{k}".titlecase %>  </div></th>
       <% end %>
 
-      <th> Bonus </th>
+      <th><div class="vertical"> Bonus </div></th>
 
       <!-- Accolaids -->
     </tr>
@@ -40,7 +39,6 @@
       <% mvp = SeasonPlayerStatsDecorator.mvp_points(singles[:legs_won], cricket[:legs_won], choice[:legs_won]) %>
       <% accolaids = SeasonPlayerStatsDecorator.accolaids(member.player.season_accolaids(member.season.id)) %>
       <tr>
-        <td> <%= member.season_name %> </td>
         <td> <%= member.player_name %> </td>
         <td> <%= member.team_name %> </td>
 
@@ -68,3 +66,10 @@
     <% end %>
   </tbody>
 </table>
+
+<script src="https://cdn.jsdelivr.net/npm/tablesorter@2.31.2/dist/js/jquery.tablesorter.combined.min.js"></script>
+<script> 
+  $( document ).on('turbolinks:load', function() {
+    $(".tablesorter").tablesorter();
+  });
+</script> 
